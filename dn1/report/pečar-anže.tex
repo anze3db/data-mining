@@ -19,6 +19,7 @@
 \definecolor{light-gray}{gray}{0.95}
 \usepackage{listings} % za vključevanje kode
 \usepackage{hyperref}
+\usepackage{float}
 \renewcommand{\baselinestretch}{1.2} % za boljšo berljivost večji razmak
 \renewcommand{\appendixpagename}{Priloge}
 
@@ -39,125 +40,66 @@ backgroundcolor=\color{light-gray},
 
 \section{Uvod}
 
-V tem razdelku, ki naj bo kratek in naj obsega en odstavek z do 150
-besed, na kratko opišeš, kaj je bil cilj naloge.
-
-\section{Podatki}
-
-Če je naloga zasnovana tako, da vključuje analizo izbranih podatkov, v
-tem razdelku opišeš, kakšni so ti podatki in navedeš nekaj osnovnih
-statističnih lastnosti teh podatkov. Slednje vključujejo velikost
-podatkov (na primer število primerov, število in vrsto atributov), delež
-manjkajočih podatkov, opis in porazdelitev vrednosti ciljnih
-spremenljivk, in podobno. Če si podatke pridobil sam, tu opišeš, na
-kakšen način, kje in kako.
-
-\section{Metode}
-
-Tu opišeš, na kakšen način si rešil nalogo (tehnike in metode, ki si
-jih uporabil). Lahko vključiš tudi zanimiv del programske kode, ki
-si jo morda pri tem razvil ali pa v poročilo dodatno vključiš sliko,
-kot je na primer slika~\ref{slika1}. Vse slike in tabele, ki jih
-vključiš v poročilo, morajo biti navedene v besedilu oziroma se moraš
-na njih sklicati.
-
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[scale=0.3]{slika-primer.png}
-\caption{Vsako sliko opremi s podnapisom, ki pove, kaj slika prikazuje.}
-\label{slika1}
-\end{center}
-\end{figure}
-
-V to poglavje lahko tudi vključiš kakšen metodološko zanimiv del
-kode. Primer vključitve kode oziroma implementirane funkcije v
-programskem jeziku Python je:
-
-\begin{lstlisting}
-def fib(n):
-    if n == 0:
-        return 0
-    elif n == 1:
-        return 1
-    else:
-        return fib(n-1) + fib(n-2)
-\end{lstlisting}
-
-Izris te kode je lahko sicer tudi lepši, poskušaš lahko najti še
-primernejši način vključevanja kode v Pythonu oziroma v tvojem izbranem
-programskem jeziku v okolje \LaTeX{}.
+Cilj prve domače naloge je bil seznaniti se s podatki, ki jih uporablja tekmovanje \textit{JRS 2012 Data Mining Competition: Topical Classification of Biomedical Research Papers}. Podatke smo preučili tako, da smo prešteli primere in atribute, preverili kako redka je matrika in porazdelitve atributov prikazali na različne načine.
 
 \section{Rezultati}
 
-V tem poglavju podaš rezultate s kratkim (enoodstavčnim)
-komentarjem. Rezultate lahko prikažeš tudi v tabeli (primer je
-tabela~\ref{tab1}).
+\subsection*{Koliko primerov in atributov vsebujejo podatki?}
+Podatki vsebujejo 2000 primerov in 10000 atributov.
 
-Odstavke pri pisanju poročila v LaTeX-u ločiš tako, da pred novim
-odstavkom pustiš prazno vrstico. Tudi, če pišeš poročilo v kakšnem
-drugem urejevalniku, morajo odstavki biti vidno ločeni. To narediš z
-zamikanjem ali pa z dodatnim presledkom.
+\subsection*{Kakšnega tipa so atributi?}
+Atributi so zvezni, saj zasedajo vrednosti na intervalu pozitivnih celih števil. 
 
-\begin{table}[htbp]
-\caption{Atributi in njihove zaloge vrednosti.}
-\label{tab1}
+\subsection*{Kako redka je matrika oz. kakšen delež njenih elementov ima vrednost različen od 0?}
+Matrika je precej redka, saj ima le 0.41\% elementov vrednost različno od nič.  
+
+\subsection*{Koliko atributov ima vrednost različno od 0 za posamezen primer?}
+\begin{figure}[H]
 \begin{center}
-\begin{tabular}{llp{3cm}}
-\hline
-ime spremenljivke & definicijsko območje & opis \\
-\hline
-cena & [0, 500] & cena izdelka v EUR\\
-teža & [1, 1000] & teža izdelka v dag \\
-kakovost & [slaba|srednja|dobra] & kakovost izdelka \\
-\hline
-\end{tabular}
+\includegraphics[scale=0.5]{examples.png}
+\caption{Prikaz atributov, ki imajo vrednost različno od 0 za posamezen primer}
+\label{primeri}
 \end{center}
-\end{table}
+\end{figure}
+Iz Slike \ref{primeri}  je lepo razvidno, da ima največ primerov okoli 40 neničelnih atributov. Redki so primeri, ki imajo več kot 70 oz. manj kot 30 atributov.
 
-Podajanje rezultati naj bo primerno strukturirano. Če ima naloga več
-podnalog, uporabi podpoglavja. Če bi želel poročati o rezultatih
-izčrpno in pri tem uporabiti vrsto tabel ali grafov, razmisli o
-varianti, kjer v tem poglavju prikažeš in komentiraš samo glavne
-rezultate, kakšne manj zanimive detajle pa vključite v prilogo (glej
-prilogi~\ref{app-res} in~\ref{app-code}).
+\subsection*{V koliko primerih atribut zavzame neničelne vrednosti?}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{attributes.png}
+\caption{Primeri, kjer atribut zavzame neničelne vrednosti}
+\label{atributi}
+\end{center}
+\end{figure}
+Iz Slike \ref{atributi} je razvidno, da so zelo redki atributi, ki se pojavijo v več kot 20 primerih. Graf sem omejil na intervalu od 0 do 100, saj ga ostale ničelne vrednosti naredijo manj preglednega.
+
+\subsection*{Koliko je vseh različnih oznak (razredov) v podatkih?}
+Vseh različnih oznak v podatkih je 82.
+
+\subsection*{S koliko različnimi oznakami so označeni primeri?}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{labels.png}
+\caption{Različne oznake za primere}
+\label{oznake}
+\end{center}
+\end{figure}
+Na Sliki \ref{oznake} lahko vidimo, da ima največ primerov po en razred oz. oznako. Primeri z več kot desetimi oznakami so redki.
+
+\subsection*{Lastno vprašanje 1: Koliko atributov se ne pojavi v nobenem primeru?}
+Vprašanje je zanimivo, saj atribute, ki se ne pojavijo v nobenem primeru, lahko odstranimo in poenostavimo nabor podatkov. V našem primeru imamo imamo kar 2349 atributov, ki imajo pri vseh primerih vrednost 0.
+
+\subsection*{Lastno vprašanje 2: Kateri atribut se največkrat pojavi v primerih? V kolikih primerih se pojavi?}
+V primerih se največkrat pojavi atribut 7877, ki se pojavi 537 krat.
+
+\subsection*{Lastno vprašanje 3: Naštej 3 najbolj pogoste oznake? Kolikokrat se pojavijo?}
+Najpogostejše oznake so:
+\begin{itemize}
+\item '40' s 502,
+\item '44' s 494 in
+\item '18' s 428 ponovitvami.
+\end{itemize}
 
 \section{Izjava o izdelavi domače naloge}
 Domačo nalogo in pripadajoče programe sem izdelal sam.
-
-\appendix
-\appendixpage
-\section{\label{app-res}Podrobni rezultati poskusov}
-
-Če je rezultatov v smislu tabel ali pa grafov v nalogi mnogo,
-predstavi v osnovnem besedilu samo glavne, podroben prikaz
-rezultatov pa lahko predstaviš v prilogi. V glavnem besedilu ne
-pozabi navesti, da so podrobni rezultati podani v prilogi.
-
-\section{\label{app-code}Programska koda}
-
-Za domače naloge bo tipično potrebno kaj sprogramirati. Če ne bo od
-vas zahtevano, da kodo oddate posebej, to vključite v prilogo. Čisto
-za okus sem tu postavil nekaj kode, ki uporablja Orange
-(\url{http://www.biolab.si/orange}) in razvrščanje v skupine.
-
-
-\begin{lstlisting}
-import random
-import Orange
-
-data_names = ["iris", "housing", "vehicle"]
-data_sets = [Orange.data.Table(name) for name in data_names]
-
-print "%10s %3s %3s %3s" % ("", "Rnd", "Div", "HC")
-for data, name in zip(data_sets, data_names):
-    random.seed(42)
-    km_random = Orange.clustering.kmeans.Clustering(data, centroids = 3)
-    km_diversity = Orange.clustering.kmeans.Clustering(data, centroids = 3,
-        initialization=Orange.clustering.kmeans.init_diversity)
-    km_hc = Orange.clustering.kmeans.Clustering(data, centroids = 3,
-        initialization=Orange.clustering.kmeans.init_hclustering(n=100))
-    print "%10s %3d %3d %3d" % (name, km_random.iteration, \
-    km_diversity.iteration, km_hc.iteration)
-\end{lstlisting}
-
 \end{document}
