@@ -9,9 +9,10 @@ import Orange
 import cPickle
 import jrs
 import random
+from multiprocessing.dummy import Pool
 
 NUM_PERM = 10
-ALPHA = 0.01
+ALPHA = 0.0
 ml_data = jrs.Data(discretized=True)
 cnt = 0
 all = []
@@ -23,19 +24,22 @@ for c in ml_data.classes.keys():
     
     gain = []
     original = [Orange.feature.scoring.InfoGain(feature, data) for feature in data.domain.features]
-    for perm in xrange(NUM_PERM):
+    p = Pool(2)
+    def f(perm):
         random.shuffle(orgc)
         [d.set_class(orgc[i]) for i,d in enumerate(data)]
         arr = [Orange.feature.scoring.InfoGain(feature, data) for feature in data.domain.features]
         gain.append(arr)
         stdout.flush()
-        stdout.write(" "+ str(1+(cnt*100/82)) + "% current: " + c + " @ " + str(1+(perm*100/NUM_PERM)) + "% \r")
+        stdout.write("\rProgress: %3d%% current: %3s @ %3d%%" % (cnt*100/82, c, perm*100/NUM_PERM))
+
+    p.map(f, xrange(NUM_PERM))
+        
     less = []
     for oi,o in enumerate(original):
         less.append(len([x[oi] for i,x in enumerate(gain) if x[oi] > o])/float(NUM_PERM) < ALPHA)
     
-    all.append({'c': c, 'a': [i for i,x in enumerate(less) if x]})
-    break
+    all.append({'c': c, 'i': [i for i,x in enumerate(less) if x]})
 cPickle.dump(all, file("dump-"+str(NUM_PERM)+"-"+str(ALPHA)+".pickled", "w"), -1)
 
 
