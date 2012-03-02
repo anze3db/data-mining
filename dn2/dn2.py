@@ -24,8 +24,7 @@ for c in ml_data.classes.keys():
     
     gain = []
     original = [Orange.feature.scoring.InfoGain(feature, data) for feature in data.domain.features]
-    p = Pool(2)
-    def f(perm):
+    for perm in xrange(NUM_PERM):
         random.shuffle(orgc)
         [d.set_class(orgc[i]) for i,d in enumerate(data)]
         arr = [Orange.feature.scoring.InfoGain(feature, data) for feature in data.domain.features]
@@ -33,8 +32,6 @@ for c in ml_data.classes.keys():
         stdout.flush()
         stdout.write("\rProgress: %3d%% current: %3s @ %3d%%" % (cnt*100/82, c, perm*100/NUM_PERM))
 
-    p.map(f, xrange(NUM_PERM))
-        
     less = []
     for oi,o in enumerate(original):
         less.append(len([x[oi] for i,x in enumerate(gain) if x[oi] > o])/float(NUM_PERM) < ALPHA)
