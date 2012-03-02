@@ -2,7 +2,7 @@ from matplotlib import pyplot as plt
 import cPickle
 
 
-#FILE_NAME = "dump-10-0.01.pickled"
+FILE_NAME = "dump-10-0.0.0.pickled"
 FILE_NAME = "dump-100-0.01.pickled"
 
 PERM = FILE_NAME.split('-')[1]

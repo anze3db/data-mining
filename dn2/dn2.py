@@ -9,9 +9,8 @@ import Orange
 import cPickle
 import jrs
 import random
-from multiprocessing.dummy import Pool
 
-NUM_PERM = 10
+NUM_PERM = 100
 ALPHA = 0.0
 ml_data = jrs.Data(discretized=True)
 cnt = 0
@@ -21,7 +20,6 @@ for c in ml_data.classes.keys():
     data = ml_data.get_single_class_data(c) # c40 is defaut
     
     orgc = [d.get_class() for d in data]
-    
     gain = []
     original = [Orange.feature.scoring.InfoGain(feature, data) for feature in data.domain.features]
     for perm in xrange(NUM_PERM):
@@ -38,5 +36,3 @@ for c in ml_data.classes.keys():
     
     all.append({'c': c, 'i': [i for i,x in enumerate(less) if x]})
 cPickle.dump(all, file("dump-"+str(NUM_PERM)+"-"+str(ALPHA)+".pickled", "w"), -1)
-
-
