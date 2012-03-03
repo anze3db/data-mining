@@ -1,15 +1,15 @@
 from matplotlib import pyplot as plt
 import cPickle
 
-
-FILE_NAME = "dump-10-0.0.0.pickled"
-FILE_NAME = "dump-100-0.01.pickled"
+FILE_NAME = "dump-100-001.pickled"
+FILE_NAME = "dump-100-000.pickled"
+FILE_NAME = "dump-100-005.pickled"
+FILE_NAME = "dump-500-005.pickled"
 
 PERM = FILE_NAME.split('-')[1]
 ALPHA = FILE_NAME.split('-')[2][0:4]
 
 data = cPickle.load(open(FILE_NAME))
-
 hist = []
 for i in xrange(len(data)):
     hist.append(len(data[i]['i']))

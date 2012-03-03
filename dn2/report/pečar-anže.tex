@@ -39,16 +39,50 @@ backgroundcolor=\color{light-gray},
 \maketitle
 
 \section{Uvod}
+
+Naša naloga je bila izračunati kako informativne so značilke za posamezen razred. Podatke smo najprej binarilizirali, nato pa smo s pomočjo permutacijskega izračunali medsebojno informacijo. Delali smo na zmanjšanem naboru podatkov, ki jih uporablja tekmovanje \textit{JRS 2012 Data Mining Competition: Topical Classification of Biomedical Research Papers}.
+
 \section{Metode}
+\subsection{Količina medsebojne informacije}
+Količina medsebojne informacije 
+
+$H(C) = -({20\over 50}\log_2{20\over50}+{30\over 50}\log_2{30\over50})=$
 \section{Rezultati}
 \subsection{Grafi}
+
+Testni primeri:
 \begin{figure}[H]
 \begin{center}
-\includegraphics[scale=0.5]{examples.png}
-\caption{Prikaz atributov, ki imajo vrednost različno od 0 za posamezen primer}
-\label{primeri}
+\includegraphics[scale=0.5]{100-00.png}
+\caption{TEST}
+\label{primeri2}
 \end{center}
 \end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{100-005.png}
+\caption{alpha = 0.05}
+\label{primer3}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{100-001.png}
+\caption{Prikaz atributov, ki imajo vrednost različno od 0 za posamezen primer}
+\label{primeri4}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{500-005.png}
+\caption{500}
+\label{primeri4}
+\end{center}
+\end{figure}
+
 \subsection{Hitrost izvajanja}
 10 permutacij:
 \begin{verbatim}
@@ -65,7 +99,9 @@ sys	0m2.380s
 \end{verbatim}
 500 permutacij:
 \begin{verbatim}
-
+real	377m52.873s
+user	377m18.379s
+sys	0m7.308s
 \end{verbatim}
 
 %\begin{figure}[H]
