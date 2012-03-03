@@ -20,6 +20,7 @@
 \usepackage{listings} % za vključevanje kode
 \usepackage{hyperref}
 \usepackage{float}
+\usepackage{verbatim}
 \renewcommand{\baselinestretch}{1.2} % za boljšo berljivost večji razmak
 \renewcommand{\appendixpagename}{Priloge}
 
@@ -104,13 +105,10 @@ user	377m18.379s
 sys	0m7.308s
 \end{verbatim}
 
-%\begin{figure}[H]
-%\begin{center}
-%\includegraphics[scale=0.5]{examples.png}
-%\caption{Prikaz atributov, ki imajo vrednost različno od 0 za posamezen primer}
-%\label{primeri}
-%\end{center}
-%\end{figure}
+Čas izvajanja sem želel pohitriti z boljšo izrabo dveh jeder mojega prenosnika. Za ta namen sem najprej napisal verzijo programa z nitmi. Uporabil sem funkcijo map iz razreda Pool, ki razdeli izvajanje funkcije v posamezne niti. Št. niti je določeno v konstruktorju. Ker pohitritve v delovanju nisem opazil, sem sklepal, da je problem, ker sta obe niti dostopali do seznama, kjer so se shranjevali rezultati.
+
+Ker rešitev z nitmi ni delovala zadovoljivo, sem se odločil poskusiti še z dvema ločenima procesoma. Program sem spremenil tako, da je prvi proces računal vrednosti za lihe razrede, drugi pa za sode. Tudi tukaj nisem opazil nobene pohitritve. Skelpam, da je razlog v tem, da je večji del aplikacije premetavanje tabel po pomnilniku (shuffle funkcija), kjer pa izraba dveh jeder ne pomaga veliko. 
+\end{verbatim} Pool
 
 \section{Izjava o izdelavi domače naloge}
 Domačo nalogo in pripadajoče programe sem izdelal sam.
