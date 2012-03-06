@@ -39,8 +39,10 @@ class RClassify:
         for l in (sorted(counter.items(), key=lambda t: t[1], reverse=True)):
             if l[1] > THRESH: 
                 theC.append(int(l[0]))
-            if len(theC) > 3:
+            if len(theC) > 2:
                 break
+        if len(theC) == 0:
+            return [40, 44, 18, 62, 41]
             
         #print theC[:THRESH] 
         return theC           

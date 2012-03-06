@@ -5,14 +5,15 @@ import collections
 import itertools
 import os.path
 data_dir = "../"
-orange_data_filename = data_dir + "trainingDataO.pickled"
-orange_disc_filename = data_dir + "trainingDataOD.pickled"
+orange_data_filename = data_dir + "testDataO.pickled"
+orange_disc_filename = data_dir + "testDataOD.pickled"
+
 
 class RawData:
     def __init__(self):
         self.labels_file_name = data_dir + "trainingLabels.csv"
-        self.data_file_name = data_dir + "trainingData.csv"
-        self.filtered_data_file_name = data_dir + "trainingDataT.csv"
+        self.data_file_name = data_dir + "testData.csv"
+        self.filtered_data_file_name = data_dir + "testDataT.csv"
         self.preprocess_labels()
 
     def remove_empty_features(self, threshold=10):

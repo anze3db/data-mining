@@ -19,7 +19,7 @@ class Test(unittest.TestCase):
         from crossValidation import f_score
         self.assertEqual(f_score([1,2,3], [2,3]), 4/5.0, 'Basic')
         self.assertEqual(f_score([1,2,3], [1,2,3]), 1.0, '1')
-        self.assertEqual(f_score([1,2,3], []), 0, '0')
+        self.assertEqual(f_score([1,2,3], [6]), 0, '0')
         self.assertEqual(f_score([13, 40, 44, 59, 62], [50]), 'Should not fail')
 
 if __name__ == "__main__":
