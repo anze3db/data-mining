@@ -21,6 +21,7 @@ for c in ml_data.classes.keys():
     orgc = [d.get_class() for d in data]
     gain = []
     original = [Orange.feature.scoring.InfoGain(feature, data) for feature in data.domain.features]
+
     for perm in xrange(NUM_PERM):
         random.shuffle(orgc)
         [d.set_class(orgc[i]) for i,d in enumerate(data)]
