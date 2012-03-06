@@ -2,7 +2,7 @@ from Rclassify import RClassify
 
 
 def k_fold(X, K):
-    from random import shuffle; X=list(X); shuffle(X)
+    #from random import shuffle; X=list(X); shuffle(X)
     for k in xrange(K):
         training = [x for i, x in enumerate(X) if i % K != k]
         validation = [x for i, x in enumerate(X) if i % K == k]
@@ -30,11 +30,11 @@ scores = []
 for t, v in k_fold(range(len(lightData)), 10):
     kD = [lightData[i] for i in t]
     kL = [lightLabels[i] for i in t]
-    
     r = RClassify(kD, kL)
         
     for x in v:
-        print lightLabels[x], r.getClasses(lightData[x])
-        scores.append(f_score(lightLabels[x], r.getClasses(lightData[x])))
+        a = r.getClasses(lightData[x])
+        print lightLabels[x], a
+        scores.append(f_score(lightLabels[x], a))
     print sum(scores)/float(len(scores)),sum(scores),len(scores)
 print sum(scores)/float(len(scores)),sum(scores),len(scores)

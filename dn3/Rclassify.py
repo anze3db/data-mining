@@ -2,8 +2,8 @@ class RClassify:
 
     def __init__(self, lightData, lightLabels):
         
-        THRESH = 1
-        ERROR_THRESH = 0.07
+        THRESH = 10
+        ERROR_THRESH = 0.1
         counter = []
         self.predictedClasses = {}
         
@@ -17,27 +17,31 @@ class RClassify:
             for l in (sorted(counter[i].items(), key=lambda t: t[1], reverse=True)):
                 if l[1] < THRESH: break
                 allC = len([a for a,x in enumerate(lightLabels) if int(l[0]) in x])
-                if l[1]/float(allC) > ERROR_THRESH: 
+                if l[1]/float(allC) > ERROR_THRESH:
                     if not self.predictedClasses.has_key(str(i)):
                         self.predictedClasses[str(i)] = []
                     self.predictedClasses[str(i)].append({'c':l[0], 'p':l[1]/float(allC)})
-    
+                    #print self.predictedClasses[str(i)], str(i)
     def getClasses(self, row):
         counter = {}
-        THRESH = 6
+        THRESH = 2
         
         for i,x in enumerate(row):
             if x == 0: continue
-            if not self.predictedClasses.has_key(str(i)): return [40]
+            if not self.predictedClasses.has_key(str(i)): continue
             for y in self.predictedClasses[str(i)]:
-                
                 if not counter.has_key(str(y['c'])):
                     counter[str(y['c'])] = 1
                 else:
                     counter[str(y['c'])] += 1
         theC = []
+        #print "all: " + str(counter)
         for l in (sorted(counter.items(), key=lambda t: t[1], reverse=True)):
-            if l[1] < THRESH: 
+            if l[1] > THRESH: 
                 theC.append(int(l[0]))
-        return theC[:THRESH]            
+            if len(theC) > 3:
+                break
+            
+        #print theC[:THRESH] 
+        return theC           
                 
