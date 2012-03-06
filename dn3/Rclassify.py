@@ -1,9 +1,9 @@
 class RClassify:
-
+    "WARNING THIS SEEMS TO BE OVERFITTED :F"
     def __init__(self, lightData, lightLabels):
         
-        THRESH = 10
-        ERROR_THRESH = 0.1
+        THRESH = 5
+        ERROR_THRESH = 0.05
         counter = []
         self.predictedClasses = {}
         
@@ -24,7 +24,7 @@ class RClassify:
                     #print self.predictedClasses[str(i)], str(i)
     def getClasses(self, row):
         counter = {}
-        THRESH = 2
+        THRESH = 4
         
         for i,x in enumerate(row):
             if x == 0: continue
