@@ -1,5 +1,4 @@
 from Rclassify import RClassify
-import datetime
 
 
 def k_fold(X, K):
@@ -25,6 +24,7 @@ def intersect(tt, pt):
 
 if not vars().has_key('lightData'):
     from lightData import *
+    
 r = None
 scores = []
 for t, v in k_fold(range(len(lightData)), 3):
@@ -45,9 +45,9 @@ for t, v in k_fold(range(len(lightData)), 3):
     scores += curr_score
 print sum(scores)/float(len(scores)),sum(scores),len(scores)
 
-if True:
+if False:
     c = open("../testDataT.csv")
-    f = open('../result-1Rb.csv', 'w')
+    f = open('../result-1Raaa.csv', 'w')
     for line in c:
         result = r.getClasses([int(i) for i in line.strip().split("\t")])
         #print result

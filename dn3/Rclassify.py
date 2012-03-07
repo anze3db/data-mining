@@ -1,5 +1,4 @@
 class RClassify:
-    "WARNING THIS SEEMS TO BE OVERFITTED :F"
     def __init__(self, lightData, lightLabels):
         
         THRESH = 5
