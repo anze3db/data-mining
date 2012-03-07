@@ -1,7 +1,7 @@
 class RClassify:
     def __init__(self, lightData, lightLabels):
         
-        THRESH = 5
+        THRESH = 1500
         ERROR_THRESH = 0.05
         counter = []
         self.predictedClasses = {}
@@ -9,10 +9,11 @@ class RClassify:
         for i in xrange(len(lightData[0])):
             counter.append({})
             for j in xrange(len(lightData)):
-                if lightData[j][i] > 0:
-                    for k in lightLabels[j]:
-                        if counter[i].has_key(str(k)): counter[i][str(k)] += 1
-                        else: counter[i][str(k)] = 1
+                for k in lightLabels[j]:
+                    if lightData[j][i] > 0:
+                        if counter[i].has_key(str(k)): counter[i][str(k)] += lightData[j][i]
+                        else: counter[i][str(k)] = lightData[j][i]
+                # TODO: odstej, druge...
             for l in (sorted(counter[i].items(), key=lambda t: t[1], reverse=True)):
                 if l[1] < THRESH: break
                 allC = len([a for a,x in enumerate(lightLabels) if int(l[0]) in x])
@@ -38,7 +39,7 @@ class RClassify:
         for l in (sorted(counter.items(), key=lambda t: t[1], reverse=True)):
             if l[1] > THRESH: 
                 theC.append(int(l[0]))
-            if len(theC) > 2:
+            if len(theC) > 3:
                 break
         if len(theC) == 0:
             return [40, 44, 18, 62, 41]

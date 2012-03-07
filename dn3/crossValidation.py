@@ -27,7 +27,7 @@ if not vars().has_key('lightData'):
     
 r = None
 scores = []
-for t, v in k_fold(range(len(lightData)), 3):
+for t, v in k_fold(range(len(lightData)), 5):
     print len(t),len(v), len(lightData)
     kD = [lightData[i] for i in t]
     kL = [lightLabels[i] for i in t]
@@ -40,13 +40,12 @@ for t, v in k_fold(range(len(lightData)), 3):
         curr_score.append(f_score(lightLabels[x], a))
     print sum(curr_score)/float(len(curr_score)),sum(curr_score),len(curr_score)
     scores += curr_score
-    break
 finalScore = sum(scores)/float(len(scores))
 print "Final score: %.5f" % finalScore
 
-if False:
+if True:
     c = open("../testDataT.csv")
-    f = open('../result-%5.f.csv' % finalScore , 'w')
+    f = open('../result-%.5f.csv' % finalScore , 'w')
     for line in c:
         result = r.getClasses([int(i) for i in line.strip().split("\t")])
         #print result
