@@ -12,6 +12,7 @@ def get_single_class_data(data, label="c40"):
 
 start = time()
 train_data = cPickle.load(file('../trainDataO.pickled'))
+
 test_data = cPickle.load(file('../testDataO.pickled'))
 
 trainClasses = {v.name:v for v in train_data.domain.class_vars}
