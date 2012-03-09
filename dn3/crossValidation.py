@@ -43,7 +43,7 @@ for t, v in k_fold(range(len(lightData)), 3):
 finalScore = sum(scores)/float(len(scores))
 print "Final score: %.5f" % finalScore
 
-if True:
+if False:
     c = open("../testDataT.csv")
     f = open('../result-%.5f.csv' % finalScore , 'w')
     for line in c:
