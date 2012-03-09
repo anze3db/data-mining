@@ -27,7 +27,7 @@ if not vars().has_key('lightData'):
     
 r = None
 scores = []
-for t, v in k_fold(range(len(lightData)), 5):
+for t, v in k_fold(range(len(lightData)), 3):
     print len(t),len(v), len(lightData)
     kD = [lightData[i] for i in t]
     kL = [lightLabels[i] for i in t]
