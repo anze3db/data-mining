@@ -1,0 +1,84 @@
+% To je predloga za poročila o domačih nalogah pri predmetih, katerih
+% nosilec je Blaž Zupan. Seveda lahko tudi dodaš kakšen nov, zanimiv
+% in uporaben element, ki ga v tej predlogi (še) ni. Več o LaTeX-u izveš na
+% spletu, na primer na http://tobi.oetiker.ch/lshort/lshort.pdf.
+%
+% To predlogo lahko spremeniš v PDF dokument s pomočjo programa
+% pdflatex, ki je del standardne instalacije LaTeX programov.
+
+\documentclass[a4paper,11pt]{article}
+\usepackage{a4wide}
+\usepackage{fullpage}
+\usepackage[utf8x]{inputenc}
+\usepackage[slovene]{babel}
+\selectlanguage{slovene}
+\usepackage[toc,page]{appendix}
+\usepackage[pdftex]{graphicx} % za slike
+\usepackage{setspace}
+\usepackage{color}
+\definecolor{light-gray}{gray}{0.95}
+\usepackage{listings} % za vključevanje kode
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{verbatim}
+\renewcommand{\baselinestretch}{1.2} % za boljšo berljivost večji razmak
+\renewcommand{\appendixpagename}{Priloge}
+
+\lstset{ % nastavitve za izpis kode, sem lahko tudi kaj dodaš/spremeniš
+language=Python,
+basicstyle=\footnotesize,
+basicstyle=\ttfamily\footnotesize\setstretch{1},
+backgroundcolor=\color{light-gray},
+}
+
+\title{Druga domača naloga}
+\author{Anže Pečar (63060257)}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Uvod}
+
+Cilj domače naloge je bil oddati napovedi na tekmovalni stržnik in se seznaniti z ocenjevanjem točnosti in napovedni modeli.
+
+\section{Metode}
+\subsection{Ocenjevanje točnosti}
+Ocenjevanje točnosti na učnih podatkih, F mera
+\subsection{Napovedni modeli}
+\begin{itemize}
+\item[1R] Moja implementacija 1R algoritma...
+\item[RF] Random forest
+\end{itemize}
+\section{Rezultati}
+Moje ime v tekmovalnem sistemu: Anže Pečar
+\subsection{Rezultati oddaj}
+\begin{table}[H]
+\caption{Oddaje}
+\begin{tabular}{ c c c c c l }
+ Pred 12.3 & Ime metode & Oddaja & ocena mere F & ocena mere F na strežniku & Komentar\\
+  \hline
+  * & 1R & 12 & 0.36 & 0.36 & Najboljši rezultat metode \\
+  \* & RF & 1 & 1 & 1 & Najboljši rezultat metode \\
+ \end{tabular}
+\end{table}
+%\begin{figure}[H]
+%\begin{center}
+%\includegraphics[scale=0.2]{skupno100.png}
+%\caption{Rezultati 100 permutacij za različne vrednosti Alpha}
+%\label{skupno100}
+%\end{center}
+%\end{figure}
+
+\subsection{Hitrost izvajanja}
+500 RF:
+\begin{verbatim}
+real	889m59.265s
+user	883m40.190s
+sys	3m9.084s
+\end{verbatim}
+
+\section{Izjava o izdelavi domače naloge}
+Domačo nalogo in pripadajoče programe sem izdelal sam.
+\end{document}

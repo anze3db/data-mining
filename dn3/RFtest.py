@@ -1,9 +1,9 @@
 import cPickle
 import crossValidation
 
-NUM_TREES = 10
-LIMIT = 5
-FILTER = 0.15
+NUM_TREES = 250
+LIMIT = 7
+FILTER = 0.22
 
 
 all = cPickle.load(file("../randomForest-"+str(NUM_TREES)+"-results.pickle"))

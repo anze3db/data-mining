@@ -5,11 +5,11 @@ import copy
 import jrs2
 import sys
 reload(jrs2)
-#r = jrs2.RawData()
-#r.remove_empty_features(8)
-#r.convert_to_orange()
+r = jrs2.RawData()
+r.remove_empty_features(6)
+r.convert_to_orange()
 discretize = False
-NUM_TREES = 10
+NUM_TREES = 500
 
 print "Loading the data ..."
 data = jrs2.Data()
