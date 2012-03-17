@@ -10,6 +10,8 @@ def k_fold(X, K):
         
 def f_score(tt, pt):
     inter = intersect(tt, pt)
+    if(len(pt)*len(tt) == 0):
+        return 0
     prec = float(inter)/len(pt)
     recall = float(inter)/len(tt)
     if prec*recall == 0:
@@ -29,7 +31,7 @@ if __name__ == '__main__':
         
     r = None
     scores = []
-    for t, v in k_fold(range(len(lightData)), 3):
+    for t, v in k_fold(range(len(lightData)), 2):
         print len(t),len(v), len(lightData)
         kD = [lightData[i] for i in t]
         kL = [lightLabels[i] for i in t]
@@ -37,7 +39,7 @@ if __name__ == '__main__':
         curr_score = []
         for x in v:
             a = r.getClasses(lightData[x])
-            print lightLabels[x], a, f_score(lightLabels[x], a)
+            #print lightLabels[x], a, f_score(lightLabels[x], a)
             
             curr_score.append(f_score(lightLabels[x], a))
         print sum(curr_score)/float(len(curr_score)),sum(curr_score),len(curr_score)

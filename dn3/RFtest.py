@@ -1,28 +1,25 @@
 import cPickle
 import crossValidation
 
-NUM_TREES = 250
-LIMIT = 7
-FILTER = 0.22
+NUM_TREES = 500
+LIMIT = 60
+FILTER = 0.50
 
-
+#randomForestCross1600-50-results.pickle
 all = cPickle.load(file("../randomForest-"+str(NUM_TREES)+"-results.pickle"))
 
 fscore = []
 results = []
-for i in all['training']:
+for i in all['training'][1600:]:
     tt = [int(a[1:]) for a in  i.keys() if i[a]['real'] == 'T']
-    pt = [int(a[0][1:]) for a in sorted(i.items(), key=lambda t: t[1]['predicted'], reverse=True) if i[a[0]]['predicted'] > FILTER]
-    pt = pt[:LIMIT]
-    if len(pt) == 0:
-        pt = [40, 44, 18, 62, 41]
+    if(len(tt) == 0): continue
+    s = sorted(i.items(), key=lambda t: t[1]['predicted'], reverse=True)
+    pt = [int(x[0][1:]) for i,x in enumerate(s) if x[1]['predicted'] > s[0][1]['predicted']*(FILTER+(i/LIMIT))]
+    print tt, pt, crossValidation.f_score(tt, pt)
     fscore.append(crossValidation.f_score(tt, pt)) 
 for i in all['test']:
-    pt = [int(a[0][1:]) for a in sorted(i.items(), key=lambda t: t[1]['predicted'], reverse=True) if i[a[0]]['predicted'] > FILTER]
-    pt = pt[:LIMIT]
-    if len(pt) == 0:
-        print "aaa"
-        pt = [40, 44, 18, 62, 41]
+    s = sorted(i.items(), key=lambda t: t[1]['predicted'], reverse=True)
+    pt = [x[0][1:] for i,x in enumerate(s) if x[1]['predicted'] > s[0][1]['predicted']*(FILTER+(i/LIMIT))]
     results.append(pt)
 finalScore = sum(fscore)/(float(len(fscore)))
 print finalScore

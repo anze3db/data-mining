@@ -6,10 +6,10 @@ import jrs2
 import sys
 reload(jrs2)
 r = jrs2.RawData()
-r.remove_empty_features(6)
+r.remove_empty_features(10)
 r.convert_to_orange()
 discretize = False
-NUM_TREES = 500
+NUM_TREES = 200
 
 print "Loading the data ..."
 data = jrs2.Data()
@@ -30,7 +30,7 @@ for a,i in enumerate(data.classes):
     test = jrs2.add_dummy_class(test, train)
     #Orange.ensemble.forest.RandomForestLearner(trees=100)
     learner = Orange.ensemble.forest.RandomForestLearner(trees=NUM_TREES)
-    classifier = learner(train)
+    classifier = learner(Orange.data.Table(train.domain, train))
     stdout.flush()
     stdout.write("\rCurrent class: %s, %.2f %% done" % (str(i), a*100/82.0))
     
@@ -42,7 +42,7 @@ for a,i in enumerate(data.classes):
     for j,d in enumerate(test):
         all['test'][j][i] = {'predicted': classifier(d,2)[1][1]}
     
-cPickle.dump(all, file("../randomForest-"+str(NUM_TREES)+"-results.pickle", "wb"), -1)
+cPickle.dump(all, file("../randomForestCross1600-"+str(NUM_TREES)+"-results.pickle", "wb"), -1)
 #learner = Orange.ensemble.forest.RandomForestLearner(trees=10, name="rf", )
 
 #test = data.test_data

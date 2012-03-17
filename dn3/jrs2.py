@@ -14,8 +14,8 @@ orange_disc_test_filename = data_dir + "testDataOD2.pickled"
 
 class RawData:
     def __init__(self):
-        self.labels_file_name = data_dir + "trainingLabels.csv"
-        self.data_file_name = data_dir + "trainingData.csv"
+        self.labels_file_name = data_dir + "filteredLabels.csv"
+        self.data_file_name = data_dir + "filteredData.csv"
         self.filtered_data_file_name = data_dir + "trainingDataT.csv"
 
         self.test_file_name = data_dir + "testData.csv"
@@ -77,6 +77,8 @@ class RawData:
         fl = open(self.labels_file_name)
 
         for fline, lline in itertools.izip(ff, fl):
+            if len([int(v) for v in fline.strip().split("\t")]) < 7500:
+                continue
             d = Orange.data.Instance(domain, [int(v) for v in fline.strip().split("\t")])
             dlabels = set(lline.strip().split(","))
             d.set_classes([["F", "T"][lab in dlabels] for lab in self.labels])
