@@ -1,9 +1,9 @@
 import cPickle
 import crossValidation
 
-NUM_TREES = 250
-LIMIT = 30
-FILTER =  0.30
+NUM_TREES = 500
+LIMIT = 80
+FILTER = 0.441
 
 #randomForestCross1600-50-results.pickle
 all = cPickle.load(file("../randomForest-"+str(NUM_TREES)+"-results.pickle"))
@@ -37,8 +37,7 @@ print finalScore
 if True:
     f = open('../resultRF-%.5f.csv' % finalScore , 'w')
     for r in results:
-        result = r[:5]
-        #print result
+        result = r
         aa = ""
         for i in result:
             aa += str(i) + " "
