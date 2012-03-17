@@ -48,8 +48,8 @@ Cilj domače naloge je bil oddati napovedi na tekmovalni stržnik in se seznanit
 Ocenjevanje točnosti na učnih podatkih, F mera
 \subsection{Napovedni modeli}
 \begin{itemize}
-\item[1R] Moja implementacija 1R algoritma...
-\item[RF] Random forest
+\item[1R] V knjigi[bla] sem naletel na preprost algoritem imenovan 1R, ki sem ga nekoliko predelanega uporabil v domači nalogi. Algoritem deluje tako, da za vsak atribut posebej prešteje kolikokrat atribut določa posamezen razred. Napovedovanje na testnih podatkih izgleda tako, da glede na atribute, ki imajo vrednosti večje od 0, dobim seznam najbolj pogostih razredov, ki jih ti atributi napovedujejo. 
+\item[RF] Random Forest sem si zgeneriral za 10, 50, 250 in 500 dreves. Razlika med rezultatom za RF z 250 drevesi in 500 so minimalne, se pa 250 kar obnese veliko bolje kot 50. V prvem tednu sem za izbiro napovedanih razredov uporabil samo THRESHOLD vrednost (0.20 se je najbolje obnesla), v drugem tednu pa sem eksperimentiral z različnimi funkcijami. Preprosta izboljšava je bila, da sem dobljene napovedane vrednosti normaliziral preden sem nastavil prag. Še boljša pa je bila implementacija z dinamičnimim pragom, s katero sem dosegel najvišji rezultat.
 \end{itemize}
 \section{Rezultati}
 Moje ime v tekmovalnem sistemu: Anže Pečar
