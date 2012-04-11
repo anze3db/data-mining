@@ -44,7 +44,26 @@ backgroundcolor=\color{light-gray},
 Cilj domače naloge je bil seznaniti se z linearno regresijo.
 \section{Podatki}
 
-Podatki sem pridobil...
+Za podatke sem "zelel uporabiti bazo podatkov o pogodbah podjetja pri katerem ob"casno delam. Pridobil sem si dovoljenje za uporabo teh podatkov, vendar so se na "zalost izkazali za neprimerne, saj nobeni atributi niso bili medsebojno odvisno. "Se najbolje je kazalo atributu "st. obrokov in razredom znesek pogodbe, vendar kot je razvidno iz slike \ref{pogodbe} ni nobene lepe povezanosti.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.3]{pogodbe.png}
+\caption{Znesek pogodbe v odvisnosti od "st. obrokov}
+
+\end{center}
+\label{pogodbe}
+\end{figure}
+
+Zato sem na koncu uporabil podatke iz online ml te"caja, prikaz podatkov je na sliki \ref{mldata}.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.3]{ml-data.png}
+\caption{Podatki iz ml-class.org}
+\end{center}
+\label{mldata}
+\end{figure}
 
 \section{Rezultati}
 \subsection{Prva to"cka}
