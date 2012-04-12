@@ -22,7 +22,6 @@ def plot_scatter(x, y):
     """
     plt.close()
     plt.plot(x, y, marker='.', linestyle=' ', color='b')
-    plt.legend()
     plt.xlabel("X")
     plt.ylabel("Y")
     plt.title("Podatki iz ml-class.org")
@@ -30,49 +29,50 @@ def plot_scatter(x, y):
     plt.show()
     plt.close()
     
-def plot_contour():
+def plot_contour(x,y):
     """
     Plots a contour
     """
-    pass
+    
+    theta_0 = linspace(-12, 4, 20)
+    theta_1 = linspace(-2, 4, 20)
+    
+    J = zeros(shape=(theta_0.size, theta_1.size))
+    
+    for i, t0 in enumerate(theta_0):
+        for j, t1 in enumerate(theta_1):
+            J[i, j] = cost_function(x, y, t0, t1)
+    
+    plt.contour(theta_0, theta_1, J.T, logspace(0, 2.5, 18))
+    plt.xlabel("Theta 0")
+    plt.ylabel("Theta 1")
+    plt.title("Contuor plot podatkov")
+    plt.savefig('contour.png')
+    plt.show()
+
+def gradient_descent(x, y, alpha, iterations):
+    
+    hist = zeros(shape=(iterations, 1))
+    theta_0 = 0
+    theta_1 = 0
+    for i in xrange(iterations):
+        pred = [(x1*theta_1+theta_0-y[i]) for i,x1 in enumerate(x)]
+        e1 = pred * x
+        # TODO: AAAAAAAA
 
 
-#Evaluate the linear regression
-def criteria_function(x, y, theta):
+def cost_function(x, y, theta0, theta1):
     '''
     Compute cost for linear regression
     '''
-    return 0.5/len(x) * ((x.dot(theta).flatten()-y)**2).sum()
+    return sum([(x1*theta1+theta0-y[i])**2 for i,x1 in enumerate(x)])*0.5/len(x)
 
 if __name__ == '__main__':
     #x,y = get_data('data/dm.csv')
     x,y = get_data('data/ex1data1.txt')
     #plot_scatter(x,y)
+    #plot_contour(x,y)
     
     
-    # Add a column of ones to X (interception data)
-    it = ones(shape=(len(x), 2))
-    it[:, 1] = x
-    print it
-    # Grid over which we will calculate J
-    theta_0 = linspace(-10, 10, 100)
-    theta_1 = linspace(-1, 3, 100)
     
-    
-    # initialize J_vals to a matrix of 0's
-    J_vals = zeros(shape=(theta_0.size, theta_1.size))
-    
-    # Fill out J_vals
-    for t1, element in enumerate(theta_0):
-        for t2, element2 in enumerate(theta_1):
-            thetaT = zeros(shape=(2, 1))
-            thetaT[0][0] = element
-            thetaT[1][0] = element2
-            J_vals[t1, t2] = criteria_function(it, y, thetaT)
-    
-    # Contour plot
-    J_vals = J_vals.T
-    #Plot J_vals as 15 contours spaced logarithmically between 0.01 and 100
-    plt.contour(theta_0, theta_1, J_vals, logspace(0, 2.5, 25))
-    plt.show()
     

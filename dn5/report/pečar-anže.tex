@@ -67,6 +67,26 @@ Zato sem na koncu uporabil podatke iz online ml te"caja, prikaz podatkov je na s
 
 \section{Rezultati}
 \subsection{Prva to"cka}
+
+Formula za kriterijsko funkcijo je 
+\[
+J(\Theta) = J(\Theta_0, \Theta_1) = 0.5 * n \sum (\Theta_0 + \Theta_1*x)^{2}
+\]
+in sem jo v Python kodo prevedel kot
+\begin{verbatim}
+0.5/len(x)*sum([(x1*theta1+theta0-y[i])**2 for i,x1 in enumerate(x)])
+\end{verbatim}
+Iz dobljenih rezultatov sem nato izrisal contour plot. Rezultat je viden na sliki \ref{contour}.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.3]{contour.png}
+\caption{Prikaz J funkcije}
+\end{center}
+\label{contour}
+\end{figure}
+
+
 \subsection{Druga to"cka}
 \subsection{Tretja to"cka}
 
