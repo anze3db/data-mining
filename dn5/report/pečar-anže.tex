@@ -72,10 +72,7 @@ Formula za kriterijsko funkcijo je
 \[
 J(\Theta) = J(\Theta_0, \Theta_1) = 0.5 * n \sum (\Theta_0 + \Theta_1*x)^{2}
 \]
-in sem jo v Python kodo prevedel kot
-\begin{verbatim}
-0.5/len(x)*sum([(x1*theta1+theta0-y[i])**2 for i,x1 in enumerate(x)])
-\end{verbatim}
+
 Iz dobljenih rezultatov sem nato izrisal contour plot. Rezultat je viden na sliki \ref{contour}.
 
 \begin{figure}[H]
@@ -88,16 +85,42 @@ Iz dobljenih rezultatov sem nato izrisal contour plot. Rezultat je viden na slik
 
 
 \subsection{Druga to"cka}
+S paketno, stohasti"cno in analiti"cno metodo sem izračunal razlicne Thete, ki sem jih zaokrožil na 5 mest, saj sem imel nastavljen epsilon na 0.00001.
+\begin{verbatim}
+batch [-3.1406, 1.10629]
+sto   [-3.1175, 1.07008] 
+ana   [-4.2115, 1.21354]
+\end{verbatim}
+Na slikah \ref{batch} in \ref{sto} vidimo, da obe metodi dokaj hitro skonvergirata do določenega nivoja, nato pa se zelo počasi začneta približevati središču. Razlog za to je najbrž v majhnih razlikah okoli globalnega maksimuma.
 Prikaz poteka batch metode je na sliki \ref{batch}.
 \begin{figure}[H]
+\label{batch}
 \begin{center}
 \includegraphics[scale=0.3]{batch.png}
 \caption{Prikaz paketne metode}
 \end{center}
-\label{batch}
+
+\end{figure}
+Prikaz poteka stohastične metode je na sliki \ref{sto}.
+\begin{figure}[H]
+\label{sto}
+\begin{center}
+\includegraphics[scale=0.3]{sto.png}
+\caption{Prikaz stohasti"cne metode}
+\end{center}
+
 \end{figure}
 
 \subsection{Tretja to"cka}
+Slika \ref{result} kon"cne rezultate vseh uporabljenih funkcij. Rde"ca "crta prikazuje model zgrajen iz stohasti"cne metode, modra iz paketne metode in rumena iz analiti"cne metode. Kot je lepo vidno iz slike obe iterativni metodi nekoliko odstopata od analiti"cne re"sitve. "Ce bi pove"cali "stevilo iteracij, ki jih imata metodi na voljo, bi se razlike nekoliko zmanj"sale, ampak samo do neke mere, saj je podro"cje globalnega maksimuma dokaj ravno, kar nekoliko zmede iterativna algoritma.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.3]{result.png}
+\caption{Prikaz premic}
+\end{center}
+\label{result}
+\end{figure}
+
 
 %\begin{table}[H]
 %\caption{Oddaje}
